@@ -45,7 +45,7 @@
 
         <tbody>
         <tr th:each="student, iter : ${students}">
-            <td th:text="${iter.index + 1}"></td>
+            <td th:text="${iter.index + 1 + (currentPage * 5)}"></td>
             <td th:text="${student.name}"></td>
             <td th:text="${student.department}"></td>
             <td th:text="${student.gender}"></td>
@@ -57,7 +57,7 @@
                 <a th:href="@{/students/edit/{id}(id=${student.id})}" 
                 class="btn btn-warning btn-sm">Edit</a>
 
-               <a th:href="@{/students/delete/{id}(id=${student.id})}"
+                <a th:href="@{/students/delete/{id}(id=${student.id})}"
                 class="btn btn-danger btn-sm">
                 Delete
                 </a>
