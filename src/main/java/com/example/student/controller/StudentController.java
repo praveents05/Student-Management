@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class StudentController {
-private final StudentRepository repo;   // Declare repo
+private final StudentRepository repo; 
 
     public StudentController(StudentRepository repo) {
         this.repo = repo;
@@ -39,20 +39,22 @@ private final StudentRepository repo;   // Declare repo
     @GetMapping("/add")
 public String addForm(Model model) {
     model.addAttribute("student", new Student());
-    return "student";  // must match filename
+    return "student"; 
 }
 
    @PostMapping("/students/save")
 public String saveStudent(@ModelAttribute Student student) {
-    repo.save(student);   // If ID exists → Update
+    repo.save(student);  
     return "redirect:/students";
 }
 
-    @GetMapping("/delete/{id}")
-    public String deleteStudent(@PathVariable Long id) {
-        service.deleteStudent(id);
-        return "redirect:/students";
-    }
+    @GetMapping("/students/delete/{id}")
+public String deleteStudent(@PathVariable Long id) {
+
+    repo.deleteById(id);
+
+    return "redirect:/students";
+}
 
     @GetMapping("/students/edit/{id}")
 public String showEditForm(@PathVariable Long id, Model model) {
